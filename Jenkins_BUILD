@@ -13,6 +13,11 @@ pipeline {
                   def docker_tag=params.ENV+"-"+params.VERSION
                   println docker_tag
                   println BUILD_ID
+                  
+                  def apinodedeployment = readFile('deployment.json')
+                  
+                  println apinodedeployment
+                  
                   //echo "${params.OC_PROJECT}"
                   //echo "${params.MVN_BUILD_TAG}"
                   //echo "${params.OC_REGISTRY_TAG}"
