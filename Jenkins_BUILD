@@ -24,6 +24,12 @@ pipeline {
             
                   println apinodedeployment
                   
+                  def birds = ["Parrot", "Cockatiel", "Pigeon"] as String[]
+         
+                  def revertedBirds = birds.collect {it.reverse() }
+                  
+                  println revertedBirds
+                  
                   //echo "${params.OC_PROJECT}"
                   //echo "${params.MVN_BUILD_TAG}"
                   //echo "${params.OC_REGISTRY_TAG}"
