@@ -26,7 +26,7 @@ pipeline {
                 //   println apinodedeployment
                   
 
-                  def files = ["deployment.yaml", "deployment2.yaml"] as String[]
+                  String[] files = ["deployment.yaml", "deployment2.yaml"]
 
                   def imageTag = '[IMAGE_TAG]'
                   def ocProject = '[OC_PROJECT]'
@@ -45,7 +45,7 @@ pipeline {
                 //   }
 
 
-                  for(string i in files) { 
+                  for(String i in files) { 
                     println(i); 
                   } 
 
