@@ -34,15 +34,20 @@ pipeline {
                   def local_imageTag  = params.ENV+"-"+params.VERSION
                   def local_ocProject = params.ENV
 
-                  def deploy = files.collect {
-                      println "START"
-                      println it //print fileName
-                      def file = readFile(it)
-                      file=file.replaceAll(imageTag, local_imageTag)
-                      //file=file.replaceAll(ocProject, local_ocProject)
-                      println file
-                      println "START"
-                  }
+                //   def deploy = files.collect {
+                //       println "START"
+                //       println it //print fileName
+                //       def file = readFile(it)
+                //       file=file.replaceAll(imageTag, local_imageTag)
+                //       //file=file.replaceAll(ocProject, local_ocProject)
+                //       println file
+                //       println "START"
+                //   }
+
+
+                  for(string i in files) { 
+                    println(i); 
+                  } 
 
                   
                   //echo "${params.OC_PROJECT}"
