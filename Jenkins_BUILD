@@ -10,30 +10,35 @@ pipeline {
                   echo 'test'
                   echo "${params.ENV}"
                   echo "${params.VERSION}"
-                  def docker_tag=params.ENV+"-"+params.VERSION
-                  println docker_tag
-                  println BUILD_ID
                   
-                  def apinodedeployment = readFile('deployment.yaml') 
                   
-                  println apinodedeployment
+                //   println docker_tag
+                //   println BUILD_ID
                   
-                  def imageTag = 'IMAGE_TAG'
+                //   def apinodedeployment = readFile('deployment.yaml') 
                   
-                  apinodedeployment=apinodedeployment.replaceAll(imageTag, docker_tag)
+                //   println apinodedeployment
+                  
+                //   def imageTag = 'IMAGE_TAG'
+                  
+                //   apinodedeployment=apinodedeployment.replaceAll(imageTag, docker_tag)
             
-                  println apinodedeployment
+                //   println apinodedeployment
                   
-                  def birds = ["Parrot", "Cockatiel", "Pigeon"] as String[]
-         
-                  def revertedBirds = birds.collect {it.reverse() }
-                  
-                  println revertedBirds
 
                   def files = ["deployment.yaml", "deployment2.yaml"] as String[]
 
+                  def imageTag = '[IMAGE_TAG]'
+                  def ocProject = '[OC_PROJECT]'
+
+                  def local_imageTag  = params.ENV+"-"+params.VERSION
+                  def local_ocProject = params.ENV
+
                   def deploy = files.collect {
+                      println it //print fileName
                       def file = readFile(it)
+                      file=file.replaceAll(imageTag, local_imageTag)
+                      file=file.replaceAll(ocProject, local_ocProject)
                       println file
                   }
 
