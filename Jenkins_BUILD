@@ -29,6 +29,14 @@ pipeline {
                   def revertedBirds = birds.collect {it.reverse() }
                   
                   println revertedBirds
+
+                  def files = ["deployment.yaml", "deployment2.yaml"] as String[]
+
+                  def deploy = files.collect {
+                      def file = readFile(it)
+                      println file
+                  }
+
                   
                   //echo "${params.OC_PROJECT}"
                   //echo "${params.MVN_BUILD_TAG}"
