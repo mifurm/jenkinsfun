@@ -14,10 +14,9 @@ pipeline {
                   println docker_tag
                   println BUILD_ID
                   
-                  def apinodedeployment = readFile('deployment.json')
+                  def apinodedeployment = readFile('deployment.yaml')
                   println apinodedeployment
                   
-             
                   apinodedeployment.text = apinodedeployment.text.replaceAll('latest', '8.8.0')
             
                   println apinodedeployment
