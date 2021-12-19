@@ -18,7 +18,7 @@ pipeline {
                   
                   println apinodedeployment
                   
-                  apinodedeployment=apinodedeployment.replaceAll('latest', '8.8.0')
+                  apinodedeployment=apinodedeployment.replaceAll('latest', docker_tag)
             
                   println apinodedeployment
                   
