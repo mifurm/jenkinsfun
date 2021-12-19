@@ -50,7 +50,7 @@ pipeline {
                      println(i); 
                      def file = readFile(i)
                      file=file.replaceAll(imageTag, local_imageTag)
-                //       //file=file.replaceAll(ocProject, local_ocProject)
+                     file=file.replaceAll(ocProject, local_ocProject)
                      println file
                      file = null
                      println("END")

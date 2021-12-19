@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: [OC_PROJECT]
+  namespace: OC_PROJECT
   name: hello-openshift
 spec:
   replicas: 1
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: hello-openshift
-        image: openshift/[OC_PROJECT]/hello-openshift:[IMAGE_TAG]
+        image: openshift/OC_PROJECT/hello-openshift:IMAGE_TAG
         ports:
         - containerPort: 80
