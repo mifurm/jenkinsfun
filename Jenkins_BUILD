@@ -18,7 +18,9 @@ pipeline {
                   
                   println apinodedeployment
                   
-                  apinodedeployment=apinodedeployment.replaceAll('latest', docker_tag)
+                  def imageTag = '{IMAGE_TAG}'
+                  
+                  apinodedeployment=apinodedeployment.replaceAll(imageTag, docker_tag)
             
                   println apinodedeployment
                   
