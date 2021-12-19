@@ -46,7 +46,11 @@ pipeline {
 
 
                   for(String i in files) { 
-                    println(i); 
+                     println(i); 
+                     def file = readFile(i)
+                     file=file.replaceAll(imageTag, local_imageTag)
+                //       //file=file.replaceAll(ocProject, local_ocProject)
+                     println file
                   } 
 
                   
