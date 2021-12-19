@@ -1,0 +1,26 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('PARAMS') {
+            steps {
+                script {
+                  echo 'test'
+                  echo "${params.ENV}"
+                  echo "${params.VERSION}"
+                  def docker_tag=params.ENV+"-"+params.VERSION
+                  println docker_tag
+                  println BUILD_ID
+                  //echo "${params.OC_PROJECT}"
+                  //echo "${params.MVN_BUILD_TAG}"
+                  //echo "${params.OC_REGISTRY_TAG}"
+                  //def docker_tag=params.OC_REGISTRY_TAG+params.ENV
+                 //sh 'docker image prune --force'
+                 //sh 'docker image prune -a --force'
+                }
+            }
+       }
+    }
+}
