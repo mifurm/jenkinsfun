@@ -16,7 +16,10 @@ pipeline {
                   
                   def apinodedeployment = readFile('deployment.json')
                   println apinodedeployment
-                  sed -i 's/latest/test/g' apinodedeployment
+                  
+             
+                  apinodedeployment.text = apinodedeployment.text.replaceAll('latest', '8.8.0')
+            
                   println apinodedeployment
                   
                   //echo "${params.OC_PROJECT}"
