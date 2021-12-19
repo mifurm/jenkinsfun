@@ -15,7 +15,8 @@ pipeline {
                   println BUILD_ID
                   
                   def apinodedeployment = readFile('deployment.json')
-                  
+                  println apinodedeployment
+                  sed -i 's/latest/test/g' apinodedeployment
                   println apinodedeployment
                   
                   //echo "${params.OC_PROJECT}"
