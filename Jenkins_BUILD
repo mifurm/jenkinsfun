@@ -26,10 +26,10 @@ pipeline {
                 //   println apinodedeployment
                   
 
-                  String[] files = ["deployment.yaml", "deployment2.yaml"]
+                  String[] files = ["deployment.yaml"]
 
-                  def imageTag = '[IMAGE_TAG]'
-                  def ocProject = '[OC_PROJECT]'
+                  def imageTag = 'IMAGE_TAG'
+                  def ocProject = 'OC_PROJECT'
 
                   def local_imageTag  = params.ENV+"-"+params.VERSION
                   def local_ocProject = params.ENV
