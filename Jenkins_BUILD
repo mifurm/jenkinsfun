@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('CheckoutModule1') {
+        /*stage('CheckoutModule1') {
           steps {
               sh 'mkdir -p Module1'
               dir("Module1")
@@ -13,7 +13,7 @@ pipeline {
                   url: 'git@github.com:mifurm/AZNetWorkshop.git'
               }
           }
-        }
+        }*/
         stage('PARAMS') {
             steps {
                 script {
