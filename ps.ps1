@@ -1,2 +1,2 @@
-Import-Module -Name Az
+#Import-Module -Name Az
 Connect-AzAccount -Identity
