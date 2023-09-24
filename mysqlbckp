@@ -13,7 +13,7 @@ pipeline {
                     def timestamp = now.format("yyyy-MM-dd_HH-mm-ss", TimeZone.getTimeZone('UTC'))
                     def filename = "output_${timestamp}.sql"
                     echo "Filename: ${filename}"
-                    //sh 'mydumper --regex=\'^(?!(mysql|sys|information_schema|performance_schema))\' --host=mysql01mf.mysql.database.azure.com --user=mifurm --password=\'Testtest123!@#\' --outputdir=./backup-1010 --rows=500000 --compress --build-empty-files --threads=16 --compress-protocol'
+                    //sh 'mydumper --regex=\'^(?!(mysql|sys|information_schema|performance_schema))\' --host=mysql01mf.mysql.database.azure.com --user=mifurm --password=\${passwd}' --outputdir=./backup-1010 --rows=500000 --compress --build-empty-files --threads=16 --compress-protocol'
                     sh "echo \${passwd}' | mysqldump --column-statistics=0 -hmysql01mf.mysql.database.azure.com -umifurm -p --databases tstdb > ${filename}"
                 }
             }
