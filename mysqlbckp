@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    //sh 'rm ps.ps1'
+                    //sh 'wget https://raw.githubusercontent.com/mifurm/jenkinsfun/main/ps.ps1'
+                    //sh 'pwsh -NonInteractive -File ps.ps1'
+                    sh 'pwd'
+                    def now = new Date()
+                    def timestamp = now.format("yyyy-MM-dd_HH-mm-ss", TimeZone.getTimeZone('UTC'))
+                    def filename = "output_${timestamp}.sql"
+                    echo "Filename: ${filename}"
+                    //sh 'mydumper --regex=\'^(?!(mysql|sys|information_schema|performance_schema))\' --host=mysql01mf.mysql.database.azure.com --user=mifurm --password=\'Testtest123!@#\' --outputdir=./backup-1010 --rows=500000 --compress --build-empty-files --threads=16 --compress-protocol'
+                    sh "echo \${passwd}' | mysqldump --column-statistics=0 -hmysql01mf.mysql.database.azure.com -umifurm -p --databases tstdb > ${filename}"
+                }
+            }
+        }
+    }
+}
