@@ -1,4 +1,6 @@
 #Import-Module -Name Az
+#pwsh -command '$PSVersionTable.PSVersion.Major'
+
 $sub            = "ce5686a3-a664-455d-86cd-0c3518d6920c"
 $vaultName      = "vault-lmtlmpup"
 $storageAcc     = "fssg01"
