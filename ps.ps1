@@ -21,3 +21,8 @@ Set-AzRecoveryServicesVaultContext -Vault $azr
 $afsContainer = Get-AzRecoveryServicesBackupContainer -FriendlyName $storageAcc -ContainerType AzureStorage
 $afsBkpItem   = Get-AzRecoveryServicesBackupItem -Container $afsContainer -WorkloadType "AzureFiles" -FriendlyName $bckpItem
 $job          = Backup-AzRecoveryServicesBackupItem -Item $afsBkpItem
+
+#az cli version
+#az backup protection backup-now --item-name "bckpfssmb" --resource-group "backuprg" --vault-name "vault-ln7u8gmk" --container-name st01bckp --backup-management-type AzureStorage --workload-type AzureFileShare
+#https://learn.microsoft.com/en-us/cli/azure/backup/vault?view=azure-cli-latest#az-backup-vault-list()
+#https://github.com/Azure/azure-cli/issues/11179
