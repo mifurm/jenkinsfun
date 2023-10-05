@@ -1,0 +1,33 @@
+stages {
+        stage('Hello') {
+            parallel {
+                    stage('1') {
+                        options {
+                            timeout(time: 30, unit: 'SECONDS')   // timeout on this stage
+                        }
+                        steps {
+                                script {
+                                try {
+                                    sh '''
+                                        az login --identity --username 00ad99b4-38cd-43fd-b26a-384d63e92a08
+                                        az account set -s sub-01    
+                                        az webapp create-remote-connection -n testappmf -g backuprg --subscription sub-01 -p 2222
+                                    '''
+                                }
+                                catch(Exception e){
+                                    echo 'Exception occurred: ' + e.toString()
+                                }
+                                }
+                        }
+                    }
+                    stage('2') {
+                        steps {
+                           sh '''
+                            sleep 30
+                            sshpass -pDocker! ssh -tt root@127.0.0.1 -p 2222 'uname -a'
+                           '''
+                        }
+                    }
+            }
+        }
+    }
