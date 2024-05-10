@@ -10,5 +10,12 @@ pipeline {
                 }
             }
        }
+        stage('CLEAN/PRUNE DOCKER IMAGES') {
+            steps {
+                 sh 'docker image prune --force'
+                 sh 'docker image prune -a --force'
+            }
+       }
+  
     }
 }
