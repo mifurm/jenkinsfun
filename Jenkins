@@ -19,29 +19,29 @@ pipeline {
       }
       }
       stage('PUSH IMAGES') {
-      environment {
-        OPENSHIFTREG_CREDENTIALS = credentials('aro')
-      }
+      // environment {
+      //   OPENSHIFTREG_CREDENTIALS = credentials('aro')
+      // }
       steps {
         script {
           echo 'PUSHING IMAGES TO REGISTRY'
         }
       }
       }
-      // stage('OpenShift Prepare Config') {
-      //   steps {
-      //     echo 'DEPLOYING THE CONFIGS to CLUSTER'
-      //     script {
-      //       echo "[INFO] OpenShift/ARO Project-Name: ${ocProjectName}"
-      //       withEnv(["PATH+OC=${tool 'oc'}"]) {
-      //         openshift.withCluster('aro') {
-      //           openshift.withProject(ocProjectName) {
-      //               echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
+      stage('OpenShift Prepare Config') {
+        steps {
+          echo 'DEPLOYING THE CONFIGS to CLUSTER'
+          script {
+            echo "[INFO] OpenShift/ARO Project-Name: ${ocProjectName}"
+            withEnv(["PATH+OC=${tool 'oc'}"]) {
+              openshift.withCluster('aro') {
+                openshift.withProject(ocProjectName) {
+                    echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                }
+              }
+            }
+          }
+        }
+      }
     }
 }
