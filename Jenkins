@@ -1,21 +1,47 @@
+def ocProjectName = 'aroproject'
+
 pipeline {
     agent any
     stages {
-        stage('PARAMS') {
-            steps {
-                script {
-                  echo 'test'
-                  echo "${params.ENV}"
-                  echo "${params.VERSION}"
+      stage('PARAMS') {
+          steps {
+        script {
+          echo 'test'
+          echo "${params.ENV}"
+          echo "${params.VERSION}"
+        }
+          }
+      }
+      stage('CLEAN/PRUNE DOCKER IMAGES') {
+      steps {
+        sh 'docker image prune --force'
+        sh 'docker image prune -a --force'
+      }
+      }
+      stage('PUSH IMAGES') {
+      environment {
+        OPENSHIFTREG_CREDENTIALS = credentials('aro')
+      }
+      steps {
+        script {
+          echo 'PUSHING IMAGES TO REGISTRY'
+        }
+      }
+      }
+      stage('OpenShift Prepare Config') {
+        steps {
+          echo 'DEPLOYING THE CONFIGS to CLUSTER'
+          script {
+            echo "[INFO] OpenShift/ARO Project-Name: ${ocProjectName}"
+            withEnv(["PATH+OC=${tool 'oc'}"]) {
+              openshift.withCluster('aro') {
+                openshift.withProject(ocProjectName) {
+                    echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                 }
+              }
             }
-       }
-        stage('CLEAN/PRUNE DOCKER IMAGES') {
-            steps {
-                 sh 'docker image prune --force'
-                 sh 'docker image prune -a --force'
-            }
-       }
-  
+          }
+        }
+      }
     }
 }
