@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('PARAMS') {
+            steps {
+                script {
+                  echo 'test'
+                  echo "${params.ENV}"
+                  echo "${params.VERSION}"
+                }
+            }
+       }
+    }
+}
