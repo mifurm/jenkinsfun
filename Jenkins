@@ -11,6 +11,8 @@ pipeline {
 
               echo "${env.BUILD_NUMBER}"
               echo "${env.WORKSPACE}"
+
+              sh 'ls -la'
               
 
               
