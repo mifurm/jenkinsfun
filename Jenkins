@@ -14,9 +14,8 @@ pipeline {
 
               sh 'ls -la'
               
-
+              echo "${params.ENV}"
               
-              // echo "${params.ENV}"
               // echo "${params.VERSION}"
             }
           }
